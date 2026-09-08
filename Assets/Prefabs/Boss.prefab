@@ -103,5 +103,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   speed: 1
-  health: 0
+  health: 100
   message: Hello World!
