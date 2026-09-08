@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 
 //Inheritance -- Boss is an Enemy now!
 public class Boss : Enemy
 {
    public string message = "Hello World!";
+   public UnityEvent onGameWin;
 
    protected override void Start()
    {
@@ -18,5 +20,17 @@ public class Boss : Enemy
       direction = transform.position - Vector3.zero;
       Vector3 rotatedDirection = Quaternion.AngleAxis(speed * Time.deltaTime, Vector3.forward) * direction;
       transform.position = rotatedDirection;
+   }
+
+   public void SayMessage( string newMessage )
+   {
+      healthLabel.text = newMessage;
+   }
+
+   public override void ChangeHealth(int amount)
+   {
+      health += amount;
+      healthLabel.text = "" + health;
+      if (health <= 0) onGameWin.Invoke();
    }
 }
