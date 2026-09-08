@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -6,11 +7,14 @@ public class Enemy : MonoBehaviour
    public float speed;
    public int health;
    protected Vector3 direction;
+   private TMP_Text healthLabel;
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
    void Start()
    {
       direction = Vector3.zero - transform.position; // B - A
+      healthLabel = GetComponentInChildren<TMP_Text>();
+      healthLabel.text = "" + health ;
    }
 
    // Update is called once per frame
@@ -28,6 +32,7 @@ public class Enemy : MonoBehaviour
    public void ChangeHealth( int amount )
    {
       health += amount;
+      healthLabel.text = "" + health;
       if (health <= 0)
       {
          Destroy(this.gameObject);
